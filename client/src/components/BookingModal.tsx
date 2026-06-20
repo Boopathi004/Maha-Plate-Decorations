@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { X, User, Mail, Phone, CalendarDays, Clock, Hash, Sparkles, CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'sonner';
-import { trpc } from '../lib/trpc';
 
 interface BookingModalProps {
   onClose: () => void;
@@ -83,45 +82,6 @@ export default function BookingModal({ onClose }: BookingModalProps) {
   const [formData, setFormData] = useState(initialFormData);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const createBooking = trpc.bookings.create.useMutation({
-    onSuccess: () => {
-      // Build the WhatsApp message
-      const pkgLabel = packages.find(p => p.value === formData.packageType)?.label || formData.packageType;
-      const eventLabel = eventLabels[formData.eventType] || formData.eventType;
-
-      const message = [
-        `*New Booking Request - Maha Plate Designing*`,
-        ``,
-        `Name: ${formData.clientName}`,
-        `Email: ${formData.clientEmail}`,
-        `Phone: ${formData.clientPhone}`,
-        ``,
-        `Event Type: ${eventLabel}`,
-        `Event Date: ${formData.eventDate}`,
-        formData.eventTime ? `Event Time: ${formData.eventTime}` : '',
-        `Number of Plates: ${formData.plateCount}`,
-        `Package: ${pkgLabel}`,
-        formData.specialRequests ? `Special Requests: ${formData.specialRequests}` : '',
-        ``,
-        `Please confirm availability and pricing. Thank you!`,
-      ]
-        .filter(Boolean)
-        .join('\n');
-
-      const encodedMessage = encodeURIComponent(message);
-      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-
-      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-      toast.success('Booking saved & opening WhatsApp! 🎉');
-      setIsSubmitting(false);
-      onClose();
-    },
-    onError: (err) => {
-      toast.error(`Database save failed: ${err.message}`);
-      setIsSubmitting(false);
-    },
-  });
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -148,18 +108,38 @@ export default function BookingModal({ onClose }: BookingModalProps) {
 
     setIsSubmitting(true);
 
-    const eventDateTime = new Date(`${formData.eventDate}T${formData.eventTime || '12:00'}`);
+    // Build the WhatsApp message
+    const pkgLabel = packages.find(p => p.value === formData.packageType)?.label || formData.packageType;
+    const eventLabel = eventLabels[formData.eventType] || formData.eventType;
 
-    createBooking.mutate({
-      clientName: formData.clientName,
-      clientEmail: formData.clientEmail,
-      clientPhone: formData.clientPhone,
-      eventType: formData.eventType,
-      eventDate: eventDateTime.toISOString(),
-      plateCount: Number(formData.plateCount),
-      packageType: formData.packageType as 'basic' | 'premium' | 'elite',
-      specialRequests: formData.specialRequests || undefined,
-    });
+    const message = [
+      `*New Booking Request - Maha Plate Designing*`,
+      ``,
+      `Name: ${formData.clientName}`,
+      `Email: ${formData.clientEmail}`,
+      `Phone: ${formData.clientPhone}`,
+      ``,
+      `Event Type: ${eventLabel}`,
+      `Event Date: ${formData.eventDate}`,
+      formData.eventTime ? `Event Time: ${formData.eventTime}` : '',
+      `Number of Plates: ${formData.plateCount}`,
+      `Package: ${pkgLabel}`,
+      formData.specialRequests ? `Special Requests: ${formData.specialRequests}` : '',
+      ``,
+      `Please confirm availability and pricing. Thank you!`,
+    ]
+      .filter(Boolean)
+      .join('\n');
+
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+
+    // Open WhatsApp in a new tab
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    toast.success('Opening WhatsApp! 🎉');
+
+    setIsSubmitting(false);
+    onClose();
   };
 
   return (
