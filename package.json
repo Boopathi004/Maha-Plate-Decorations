@@ -1,0 +1,17 @@
+{
+  "name": "maha-plate-decorations",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"pnpm --filter server dev\" \"pnpm --filter client dev\"",
+    "build": "pnpm --filter server build && pnpm --filter client build",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "drizzle-kit": "^0.30.1",
+    "drizzle-orm": "^0.39.1",
+    "typescript": "^5.7.2"
+  }
+}
