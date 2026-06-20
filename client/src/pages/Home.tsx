@@ -91,8 +91,16 @@ export default function Home() {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id.toLowerCase());
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setMobileMenuOpen(false);
+      if (mobileMenuOpen) {
+        setMobileMenuOpen(false);
+        // Delay scroll slightly to allow mobile menu collapse animation to complete
+        // and prevent mobile browsers from aborting the smooth scroll.
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+      } else {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
