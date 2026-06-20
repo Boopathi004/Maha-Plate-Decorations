@@ -6,10 +6,10 @@ import GallerySection from '../components/GallerySection';
 import ReviewsSection from '../components/ReviewsSection';
 
 const heroShowcase = [
-  { src: '/images/seervarisai_plate.png', alt: 'Seervarisai' },
-  { src: '/images/pooja_thattu.png', alt: 'Pooja Thattu' },
-  { src: '/images/wedding_ring_plate.png', alt: 'Ring Ceremony' },
-  { src: '/images/nikah_plate.png', alt: 'Nikah Tray' },
+  { src: '/images/seervarisai_plate.webp', alt: 'Seervarisai' },
+  { src: '/images/pooja_thattu.webp', alt: 'Pooja Thattu' },
+  { src: '/images/wedding_ring_plate.webp', alt: 'Ring Ceremony' },
+  { src: '/images/nikah_plate.webp', alt: 'Nikah Tray' },
 ];
 
 const packageData = [
@@ -72,11 +72,20 @@ export default function Home() {
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const scrollToSection = (id: string) => {
@@ -221,7 +230,7 @@ export default function Home() {
             duration: 26,
             scale: 1.1
           },
-        ].map((item, idx) => {
+        ].filter((_, idx) => !isMobile || idx % 3 === 0).map((item, idx) => {
           const startX = (idx * 13) + 6;
           return (
             <motion.div
@@ -261,7 +270,7 @@ export default function Home() {
             {/* Logo */}
             <div className="flex items-center gap-3 cursor-pointer group" onClick={() => scrollToSection('Home')}>
               <img
-                src="/images/logo.jpg"
+                src="/images/logo.webp"
                 alt="Maha Plate Designing Logo"
                 className="w-11 h-11 rounded-full object-cover border-2 border-amber-500 shadow-md group-hover:scale-105 transition-transform duration-300 animate-pulse"
               />
@@ -816,7 +825,7 @@ export default function Home() {
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <img
-                  src="/images/logo.jpg"
+                  src="/images/logo.webp"
                   alt="Maha Plate Designing Logo"
                   className="w-12 h-12 rounded-full object-cover border border-amber-500/30 shadow-md"
                 />

@@ -27,7 +27,7 @@ const allImages: GalleryImage[] = [
     title: 'Seervarisai Presentation',
     description: 'Wedding Seer Varisai with fruits, silk & flowers',
     items: 'Fruits · Silk · Flowers · Sweets · Coconut',
-    src: '/images/seervarisai_plate.png',
+    src: '/images/seervarisai_plate.webp',
     tag: 'wedding',
   },
   {
@@ -35,7 +35,7 @@ const allImages: GalleryImage[] = [
     title: 'Aarthi Plate',
     description: 'Wedding aarthi plate with diyas & kumkum',
     items: 'Diyas · Kumkum · Turmeric · Rose Petals',
-    src: '/images/aarthi_plate.png',
+    src: '/images/aarthi_plate.webp',
     tag: 'wedding',
   },
   {
@@ -43,7 +43,7 @@ const allImages: GalleryImage[] = [
     title: 'Decorated Coconut',
     description: 'Hand-painted coconut with beads & gold fabric',
     items: 'Coconut · Beads · Gold Fabric · Flowers',
-    src: '/images/coconut_decoration.png',
+    src: '/images/coconut_decoration.webp',
     tag: 'ceremony',
   },
   {
@@ -51,7 +51,7 @@ const allImages: GalleryImage[] = [
     title: 'Engagement Gift Tray',
     description: 'Premium engagement & ring presentation tray',
     items: 'Sweets · Dry Fruits · Flowers · Gifts',
-    src: '/images/wedding_tray.png',
+    src: '/images/wedding_tray.webp',
     tag: 'engagement',
   },
   {
@@ -59,7 +59,7 @@ const allImages: GalleryImage[] = [
     title: 'Mehendi Ceremony Plate',
     description: 'Mehendi plate with henna & flower garlands',
     items: 'Henna · Flower Garlands · Turmeric · Bangles',
-    src: '/images/mehendi_plate.png',
+    src: '/images/mehendi_plate.webp',
     tag: 'ceremony',
   },
   {
@@ -67,7 +67,7 @@ const allImages: GalleryImage[] = [
     title: 'Haldi Ceremony Tray',
     description: 'Haldi tray with turmeric & floral decor',
     items: 'Turmeric · Flowers · Silk · Kumkum',
-    src: '/images/haldi_plate.png',
+    src: '/images/haldi_plate.webp',
     tag: 'ceremony',
   },
   {
@@ -75,7 +75,7 @@ const allImages: GalleryImage[] = [
     title: 'Pooja Thattu',
     description: 'Temple offering plate with sacred items',
     items: 'Banana Leaf · Agarbatti · Coconut · Fruits · Lamp',
-    src: '/images/pooja_thattu.png',
+    src: '/images/pooja_thattu.webp',
     tag: 'pooja',
   },
   {
@@ -83,7 +83,7 @@ const allImages: GalleryImage[] = [
     title: 'Valaikappu / Baby Shower',
     description: 'Baby shower plate with bangles & blessings',
     items: 'Bangles · Flowers · Betel Leaves · Fruits · Coconut',
-    src: '/images/valaikappu.png',
+    src: '/images/valaikappu.webp',
     tag: 'baby',
   },
   {
@@ -91,7 +91,7 @@ const allImages: GalleryImage[] = [
     title: 'Wedding Ring Presentation',
     description: 'Bridal ring & ceremonial tray decoration',
     items: 'Flowers · Candles · Rings · Gifts',
-    src: '/images/wedding_ring_plate.png',
+    src: '/images/wedding_ring_plate.webp',
     tag: 'wedding',
   },
   {
@@ -99,7 +99,7 @@ const allImages: GalleryImage[] = [
     title: 'Nikah / Eid Gift Tray',
     description: 'Gift presentation tray for Nikah & Eid',
     items: 'Dates · Sweets · Perfume · Flowers · Garments',
-    src: '/images/nikah_plate.png',
+    src: '/images/nikah_plate.webp',
     tag: 'festival',
   },
 ];
@@ -153,7 +153,7 @@ export default function GallerySection() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
+          className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"
         >
           {filtered.map((image, idx) => (
             <motion.div

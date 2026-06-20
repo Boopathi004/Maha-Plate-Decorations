@@ -68,7 +68,7 @@ export default function WhatsAppButton() {
           justify-content: center;
           box-shadow: 0 6px 24px rgba(220, 35, 102, 0.45);
           text-decoration: none;
-          animation: waBounceIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both 2.3s;
+          animation: waBounceIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both 1.2s;
           transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
         }
         #instagram-float-btn:hover {
@@ -98,7 +98,7 @@ export default function WhatsAppButton() {
           justify-content: center;
           box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45);
           text-decoration: none;
-          animation: waBounceIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both 2.6s;
+          animation: waBounceIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both 1.5s;
           transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
         }
         #whatsapp-float-btn:hover {
@@ -126,16 +126,16 @@ export default function WhatsAppButton() {
         }
 
         .wa-ring-1 {
-          animation: waRingPulse 2s ease-out infinite 3s;
+          animation: waRingPulse 2s ease-out infinite 2s;
         }
         .wa-ring-2 {
-          animation: waRingPulse 2s ease-out infinite 3.5s;
-        }
-        .ig-ring-1 {
           animation: waRingPulse 2s ease-out infinite 2.5s;
         }
+        .ig-ring-1 {
+          animation: waRingPulse 2s ease-out infinite 1.7s;
+        }
         .ig-ring-2 {
-          animation: waRingPulse 2s ease-out infinite 3s;
+          animation: waRingPulse 2s ease-out infinite 2.2s;
         }
 
         /* Tooltips */

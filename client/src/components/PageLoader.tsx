@@ -4,10 +4,10 @@ export default function PageLoader() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    // Hide loader after the progress bar animation completes (2s) + fade-out time
+    // Hide loader after the progress bar animation completes (0.7s + 0.1s delay) + fade-out time
     const timer = setTimeout(() => {
       setVisible(false);
-    }, 2400);
+    }, 900);
     return () => clearTimeout(timer);
   }, []);
 
@@ -28,7 +28,7 @@ export default function PageLoader() {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        animation: visible ? 'none' : 'loaderFadeOut 0.8s cubic-bezier(0.77,0,0.175,1) forwards',
+        animation: visible ? 'none' : 'loaderFadeOut 0.3s cubic-bezier(0.77,0,0.175,1) forwards',
       }}
     >
       {/* Decorative floating orbs */}
@@ -68,7 +68,7 @@ export default function PageLoader() {
           opacity: 0,
         }}>
           <img
-            src="/images/logo.jpg"
+            src="/images/logo.webp"
             alt="Maha Plate Designing"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
@@ -122,7 +122,7 @@ export default function PageLoader() {
             width: 0,
             background: 'linear-gradient(90deg, #fbbf24, #f59e0b)',
             borderRadius: 99,
-            animation: 'loaderProgress 2s cubic-bezier(0.4,0,0.2,1) forwards 0.3s',
+            animation: 'loaderProgress 0.7s cubic-bezier(0.4,0,0.2,1) forwards 0.1s',
           }} />
         </div>
 
