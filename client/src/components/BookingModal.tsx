@@ -87,14 +87,13 @@ export default function BookingModal({ onClose }: BookingModalProps) {
 
     if (
       !formData.clientName ||
-      !formData.clientEmail ||
       !formData.clientPhone ||
       !formData.eventType ||
       !formData.eventDate ||
       !formData.plateCount ||
       !formData.packageType
     ) {
-      toast.error('Please fill in all required fields (including Email)');
+      toast.error('Please fill in all required fields');
       return;
     }
     if (formData.clientPhone.length < 10) {
@@ -116,7 +115,7 @@ export default function BookingModal({ onClose }: BookingModalProps) {
       `*New Booking Request - Maha Plate Designing*`,
       ``,
       `Name: ${formData.clientName}`,
-      `Email: ${formData.clientEmail}`,
+      formData.clientEmail ? `Email: ${formData.clientEmail}` : '',
       `Phone: ${formData.clientPhone}`,
       ``,
       `Event Type: ${eventLabel}`,
@@ -126,7 +125,7 @@ export default function BookingModal({ onClose }: BookingModalProps) {
       `Package: ${pkgLabel}`,
       formData.specialRequests ? `Special Requests: ${formData.specialRequests}` : '',
       ``,
-      `Please confirm availability and pricing. Thank you!`,
+      `Please confirm availability and pricing. Thank you.`,
     ]
       .filter(Boolean)
       .join('\n');
@@ -224,13 +223,13 @@ export default function BookingModal({ onClose }: BookingModalProps) {
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wide">
-                    Email Address <span className="text-rose-500">*</span>
+                    Email Address
                   </label>
                   <div className="relative">
                     <Mail size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                     <input id="email" type="email" value={formData.clientEmail}
                       onChange={(e) => setFormData({ ...formData, clientEmail: e.target.value })}
-                      placeholder="your@email.com" required className={`${inputClass} pl-9`} />
+                      placeholder="your@email.com" className={`${inputClass} pl-9`} />
                   </div>
                 </div>
                 <div className="md:col-span-2">
